@@ -1,4 +1,13 @@
-baseURL : http://example.org/
+baseURL : https://ikstream.net
 languageCode : en-us
-title : ikstreams ramblings
+title : ikstream ramblings
 theme: "tranquilpeak"
+paginate : 7
+author:
+  name : "Stefan Venz"
+  bio = "Just another person on the internet"
+  job = "Hobbyist"
+  # Overwritten by your gravatar image if `author.gravatarEmail` is filled
+  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  twitter = "realikstream"
+
