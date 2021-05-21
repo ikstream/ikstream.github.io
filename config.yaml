@@ -10,4 +10,13 @@ author:
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
   picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
   twitter = "realikstream"
+# Menu Configuration
+menu :
+  main :
+    weight : 1
+    identifier : home
+    name : home
+    pre : "<i class=\"sidebar-button-icon fa fa-lg fa-home\"></i>"
+    url : "/"
+
 
