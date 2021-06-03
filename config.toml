@@ -1,4 +1,4 @@
-baseURL = "https://ikstream.net"
+baseURL = "http://blog.ikstream.net"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "ikstream ramblings"
