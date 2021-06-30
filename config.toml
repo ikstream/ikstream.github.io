@@ -36,18 +36,24 @@ canonifyurls = true
   url = "/categories"
 [[menu.main]]
   weight = 3
+  identifier = "collections"
+  name = "Data Collections"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-book\"></i>"
+  url = "/collections"
+[[menu.main]]
+  weight = 4
   identifier = "tags"
   name = "Tags"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
   url = "/tags"
 [[menu.main]]
-  weight = 4
+  weight = 5
   identifier = "archives"
   name = "Archives"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
   url = "/archives"
 [[menu.main]]
-  weight = 5
+  weight = 6
   identifier = "about"
   name = "About"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
