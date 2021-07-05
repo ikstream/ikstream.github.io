@@ -1,4 +1,4 @@
-baseURL = "ikstream.github.io"
+baseURL = "/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "ikstream ramblings"
