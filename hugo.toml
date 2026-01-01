@@ -1,4 +1,4 @@
-baseURL = 'http://localhost/'
+baseURL = 'http://blog.ikstream.net/'
 languageCode = 'en-us'
 title = "ikstream's notes"
 theme = 'archie'
