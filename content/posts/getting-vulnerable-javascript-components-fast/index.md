@@ -8,7 +8,7 @@ tags: [javascript, zap, automation]
 toc: true
 ---
 
-During Penetration tests I want to get out the boring stuff as fast and automated as possible to have more time for the fun stuff.
+During penetration tests I want to get out the boring stuff as fast and automated as possible to have more time for the fun stuff.
 One of these things are vulnerable JavaScript libraries.
 They don't always affect the site in question, but might be relevant nevertheless.
 
@@ -18,15 +18,16 @@ One of these tools is `eyewitness`. It takes screenshots of websites and can lis
 By using the `-x` flag you can tell it to process XML files for detected web servers. 
 Two additional options are `--proxy-ip` and `--proxy-port` where you can define a proxy that you want to route your eyewitness traffic through. 
 
-That proxy should be [Zed Attack Proxy](https://www.zaproxy.org/)(ZAP/ZAProxy). While I prefer Burp for web assignments, ZAPs alert export function comes in handy on assignments with a higher amount of web servers like network infrastructure tests. The results (so called alerts) can be exported in JSON format and it has a plugin for vulnerable JavaScript components.
+That proxy should be [Zed Attack Proxy](https://www.zaproxy.org/) (ZAP/ZAProxy). While I prefer Burp for web assignments, ZAP's alert export function comes in handy on assignments with a higher amount of web servers like network infrastructure tests. The results (so called alerts) can be exported in JSON format and it has a plugin for vulnerable JavaScript components.
+
 
 The export contains all the alerts ZAP detected, which might be quite a lot. 
-So I wrote a tool to process the JSON report and extract some data from it, especially the vulnerable JavaScript components alert. I called it [zapalyzer ](https://github.com/ikstream/zapalyzer). 
+So I wrote a tool to process the JSON report and extract some data from it, especially the *vulnerable JavaScript components* alert. I called it [zapalyzer ](https://github.com/ikstream/zapalyzer). 
 The actual pipeline can be seen in the image below.
 
 After we got the theory behind us, here is what you actually need to run.
 ## How to setup and run
-As prerequisite we need a service scan file from nmap, preferably run with the `--version-all` flag.
+As prerequisite we need a service scan file from Nmap, preferably run with the `--version-all` flag.
 ### Proxy setup
 We need to setup ZAProxy first. If your distro provides it as a package install it from there.
 
@@ -52,21 +53,22 @@ Next we want to check, that the proxy server is running on a port we actually wa
 
 ![zap-proxy-config.png](zap-proxy-config.png)
 
-### eyewitness
+### Eyewitness
 Start [eyewitness](https://github.com/RedSiege/EyeWitness) with the service scan XML file and use the ZAProxy.
 ```sh
 eyewitness -x service-scan.xml --proxy-ip 127.0.0.0.1 --proxy-port 8181 --delay 15 --timeout 25 --no-prompt
 ```
 
 1. In addition I added a delay before taking a screenshot of 15 seconds and increased the timeout to 25 seconds before eyewitness will close the connection and report the site with an error. The `--no-prompt` flag will prevent eyewitness from asking you if it should open the resulting `report.html` file.
-### extract alerts
-To export the report we need to use the API. The GUI report is structured in a different way. If you want to process the GUI report as well, feel free to open a PR.
+
+### Extract alerts
+To export the report we need to use the API. The GUI report is structured in a different way. If you want to process the GUI report as well, feel free to open a [PR](https://github.com/ikstream/zapalyzer).
 
 By default most API access requires an API key. It can be set in the `API` section in `Options`. Use the randomly generated API key or use a strong one. For this article I assigned `12345` to keep it simple and recognisable.
 
 ![zap-set-apikey.png](zap-set-apikey.png)
 
-To get the report we can use curl and the API key. The following command will get the report from my instance of ZAP.
+To get the report we can use `curl` and the API key. The following command will get the report from my instance of ZAP.
 ```sh
 curl 'http://localhost:8181/JSON/alert/view/alerts/?apikey=12345'
 ```
@@ -77,11 +79,11 @@ To improve readability, if you want to skim over the report by yourself we can a
 curl 'http://localhost:8181/JSON/alert/view/alerts/?apikey=12345' | python -m json.tool | tee zap-alert-report.json
 ```
 
-`python -m json.tool` will output the minimized alert report in a way that's easier to read for humans. `zapalyzer` can work with the minimized and the table out as well. And you can always pipe the report though python later.
+`python -m json.tool` will output the minimized alert report in a way that's easier to read for humans. `zapalyzer` can work with the minimized and the human readable output as well. And you can always pipe the report though python later.
 
 `tee` will write the processed report to the `zap-alert-report.json` file, as well as to `stdout`.
 
-### process alerts
+### Process alerts
 Now we can clone the `zapalyzer` repository and process the report for JavaScript vulnerabilities.
 ```sh
 git clone https://github.com/ikstream/zapalyzer
@@ -98,7 +100,7 @@ Let's assume we have run the `curl` command from the directory above `zapalyzer`
 zapalyzer -i ../zap.json --csv 
 ```
 
-This will print all detected vulnerable JavaScript libraries to `stdout` including it's Caves (if available) or just EoL if they reached end of live state.
+This will print all detected vulnerable JavaScript libraries to `stdout` including it's CVEs (if available) or just EoL if they reached end of live state.
 From here on, we can redirect the output to a file again with `tee` as we have seen above, or with the redirection operators `>` or `>>`.
 
 In addtition, zapalyzer can retrieve the CVSS Base Score and the CVSS vector of a CVE found in the alert output. Therefore the `--cve` flag needs to be set. This data is fetched from  [NIST's NVD database](https://nvd.nist.gov/)
@@ -112,7 +114,7 @@ One last thing to mention though: just because a vulnerable JavaScript library i
 Thanks for reading and maybe even using zapalyzer. If you are missing a feature, just open a pull request or an issue at [GitHub](https://github.com/ikstream/zapalyzer).
 
 ## Bonus - working with a socks proxy
-If you need to send all the request through some machine in the client's network, you can configure ZAProxy to use a Socks proxy.
+If you need to send all the request through some machine in the client's network, you can configure ZAProxy to use a SOCKS proxy.
 
 Therefore you need open a Socks connection first, e.g. using ssh.
 ```sh
@@ -134,18 +136,18 @@ You can also run the zaproxy headless (without the GUI Interface)from the CLI an
 zaproxy -daemon -config api.key="UseAGood1" -newsession ~/<your-data-directory>/<session-name> -addoninstallall -addonupdate
 ```
 
-If you really don't want to work with an API key, you can disable it from the cli as well.
+If you really don't want to work with an API key, you can disable it from the CLI as well.
 ```sh
 -config api.disablekey=true
 ```
 
-You can also continue previous zap sessions.
+You can also continue previous ZAP sessions.
 
 ```sh
 zaproxy -daemon -config api.disablekey=true -session ~/<your-data-directory>/
 ```
 
-There are also more commandline options available to configure ZAP to your needs. [Check their documentation](https://www.zaproxy.org/docs/desktop/cmdline/)
+There are also more command-line options available to configure ZAP to your needs. [Check their documentation](https://www.zaproxy.org/docs/desktop/cmdline/)
 
 ## References
 
