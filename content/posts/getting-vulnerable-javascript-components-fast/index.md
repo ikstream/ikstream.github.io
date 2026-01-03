@@ -3,7 +3,7 @@ title: Getting vulnerable JavaScript components fast
 description: Automating vulnerble JavaScript detection with ZAP
 date: 2025-12-30
 tldr: Relay eyewitness traffic through ZAP and extract alerts from it.
-draft: true
+draft: false
 tags: [javascript, zap, automation]
 toc: true
 ---
