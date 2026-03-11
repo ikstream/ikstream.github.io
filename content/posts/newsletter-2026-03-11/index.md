@@ -15,7 +15,7 @@ I wasn't aware until now that nuclei also has an OSINT tag and can check user ac
 
 ---
 Jean-Francois Maes outlines a system that could make it possible to use commercial LLMs with a private upstream system for pentests. Strictly speaking, there would be two upstream systems. The first one anonymizes confidential information on the way in and deanonymizes it on the way back. The second upstream system then checks whether the first one was successful before it goes into the commercial LLM.
-- [LinkedIn] https://www.linkedin.com/pulse/interception-layer-terrible-idea-might-actually-work-maes-0ufde/?trackingId=GN7%2FMFPUT6ONBSRBdmb%2B1A%3D%3D
+- [LinkedIn] https://www.linkedin.com/pulse/interception-layer-terrible-idea-might-actually-work-maes-0ufde/
 
 ---
 An interesting reminder that extreme caution is required even when using GitHub secrets.
