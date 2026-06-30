@@ -1,6 +1,6 @@
 ---
 date: '2026-06-30T04:29:52Z'
-draft: true
+draft: false
 title: 'Newsletter 2026-06-30'
 toc: false
 tags: [newsletter articles blogs]
