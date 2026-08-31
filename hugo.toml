@@ -1,5 +1,5 @@
 baseURL = 'https://blog.ikstream.net/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = "ikstream's notes"
 theme = 'archie'
 copyright = ""
