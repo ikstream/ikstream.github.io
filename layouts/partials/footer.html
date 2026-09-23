@@ -13,9 +13,10 @@
     {{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . }} | {{ end }} <a
       href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
     | Subscribe to <a href="{{ .Site.BaseURL }}index.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS Feed">RSS Feed</a>
+    | <a href="{{ .Site.BaseURL }}impressum" target="_blank" rel="noopener noreferrer" aria-label="Impressum" > Impressum</a>
+    | <a href="{{ .Site.BaseURL }}privacy_policy" target="_blank" rel="noopener noreferrer" aria-label="Privacy Policy" > Privacy Policy</a>
   </div>
 </footer>
 {{ if not hugo.IsServer }}
 {{ template "_internal/google_analytics.html" . }}
 {{ end }}
-
