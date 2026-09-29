@@ -1,5 +1,5 @@
 ---
-date: '2026-09-29T07:22:35Z'
+date: '2026-09-29T04:22:35Z'
 draft: false
 title: 'Newsletter 2026-09-29'
 toc: false
